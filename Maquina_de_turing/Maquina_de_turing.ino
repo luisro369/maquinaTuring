@@ -54,13 +54,16 @@ void borrarPantalla(){
 //====================================================AUTOMATAS==================================================
 void Automata1(){
     char Arreglo_boton1[3] = {'a', 'b' , 'c'};
-    if (digitalRead(boton1)==HIGH){
-      lcd.print(Arreglo_boton1[Arreglop_boton1]);
-      Arreglop_boton1 +=1;
-      if(Arreglop_boton1 > 3){
-        Arreglop_boton1 = 0;
-      }//si es mayor que 3
-    }//if
+    while(digitalRead(boton2)!=HIGH){
+      if (digitalRead(boton1)==HIGH){
+        lcd.print(Arreglo_boton1[Arreglop_boton1]);
+        Arreglop_boton1 +=1;
+        if(Arreglop_boton1 > 3){
+          Arreglop_boton1 = 0;
+        }//si es mayor que 3
+      }//if
+    }//while
+    
 }//automata1
 
 
