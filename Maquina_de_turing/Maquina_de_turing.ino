@@ -54,45 +54,36 @@ void borrarPantalla(){
 
 //====================================================AUTOMATAS==================================================
 void Automata1(){
+  int posCursor = 0;
 
-    while(digitalRead(boton2)!=HIGH){
+    while(digitalRead(boton3)!=HIGH){
+      while(digitalRead(boton2)!=HIGH){
 
-      while(digitalRead(boton1) == LOW){
-        //no hace nada
-      }//mientras el boton 1 no este presionado
-      lcd.setCursor(0,0);
-      if(fuePresionado){
-        if(digitalRead(boton1) == LOW){
-          fuePresionado = 0;
-        }//si fue despresionado
-      }//si fue presionado
-      else{
-        if (digitalRead(boton1) == HIGH){
-          fuePresionado = 1;
-          lcd.print(Arreglo_boton1[Arreglop_boton1]);
-          Arreglop_boton1 +=1;
-          if(Arreglop_boton1 >= 3){
-            Arreglop_boton1 = 0;
-          }//si es mayor que 3
-        }//if
-      }//else
-    }//while
+        while(digitalRead(boton1) == LOW){
+          //no hace nada
+        }//mientras el boton 1 no este presionado
 
+        lcd.setCursor(posCursor,0);
+        if(fuePresionado){
+          if(digitalRead(boton1) == LOW){
+            fuePresionado = 0;
+          }//si fue despresionado
+        }//si fue presionado
+        else{
+          if (digitalRead(boton1) == HIGH){
+            fuePresionado = 1;
+            lcd.print(Arreglo_boton1[Arreglop_boton1]);
 
-    /*
-    while(digitalRead(boton2)!=HIGH){
-      lcd.setCursor(0,0);
-      //delay(600);
-      estado_boton1 = digitalRead(boton1);
-      if (estado_boton1){
-        lcd.print(Arreglo_boton1[Arreglop_boton1]);
-        Arreglop_boton1 +=1;
-        if(Arreglop_boton1 >= 3){
-          Arreglop_boton1 = 0;
-        }//si es mayor que 3
-      }//if
-    }//while
-    */
+            Arreglop_boton1 +=1;
+            if(Arreglop_boton1 >= 3){
+              Arreglop_boton1 = 0;
+            }//si es mayor que 3
+          }//if
+        }//else
+      }//while btn2
+      posCursor += 1;
+    }//while btn3
+
 }//automata1
 
 
