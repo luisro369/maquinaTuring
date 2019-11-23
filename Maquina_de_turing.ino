@@ -47,7 +47,7 @@ void dibujar(){
   switch (boton_presionado)
   {
   case 1:
-    if(bandera_presionado == 1;){
+    if(bandera_presionado == 1){
       lcd.clear();
       bandera_presionado = 0;
     }
@@ -56,7 +56,7 @@ void dibujar(){
     break;
 
   case 2:
-    if(bandera_presionado == 1;){
+    if(bandera_presionado == 1){
       lcd.clear();
       bandera_presionado = 0;
     }
@@ -65,7 +65,7 @@ void dibujar(){
     break;
 
   case 3:
-    if(bandera_presionado == 1;){
+    if(bandera_presionado == 1){
       lcd.clear();
       bandera_presionado = 0;
     }
