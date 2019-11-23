@@ -3,7 +3,7 @@
 LiquidCrystal lcd(12, 11, 6, 5, 4, 3);
 const int boton1 = 8, boton2 = 9, boton3 = 10;
 int boton_presionado;
-bool bandera_presionado = 0, bandera_inicio = 0;
+bool bandera_presionado = 0, bandera_inicio = 0, boton_presionado = 0;
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -52,7 +52,7 @@ void menu(){
 
   if(bandera_inicio == 1){
     lcd.setCursor(0,0);
-    lcd.print("Maquina de turing");
+    lcd.print("Maquina turing");
     lcd.setCursor(0,1);
     lcd.print("presiona 1 2 3");
   }//if
@@ -87,23 +87,26 @@ void loop() {
 //  Serial.println(fase);
  // Serial.println(configuracion.escrutado);
 // Serial.println((millis() - last_boton1)/1000);
-  if(bandera_presionado == 0){
+  if(boton_presionado == 0){
     bandera_inicio = 1;
   }//if
   delay(10);
   menu();
   
   if (digitalRead(boton1)==HIGH){
+    boton_presionado = 1;
     bandera_presionado = 1;
     bandera_inicio = 0;
     boton1_presionado();
   }
   if (digitalRead(boton2)==HIGH){
+    boton_presionado = 1;
     bandera_presionado = 1;
     bandera_inicio = 0;
     boton2_presionado();
   }
   if (digitalRead(boton3)==HIGH){
+    boton_presionado = 1;
     bandera_presionado = 1;
     bandera_inicio = 0;
     boton3_presionado();
