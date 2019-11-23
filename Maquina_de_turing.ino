@@ -92,9 +92,11 @@ void loop() {
     boton1_presionado();
   }
   if (digitalRead(boton2)==HIGH){
+    bandera_presionado = 1;
     boton2_presionado();
   }
   if (digitalRead(boton3)==HIGH){
+    bandera_presionado = 1;
     boton3_presionado();
   }
 
