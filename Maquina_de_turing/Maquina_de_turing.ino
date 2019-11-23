@@ -3,7 +3,7 @@
 LiquidCrystal lcd(12, 11, 6, 5, 4, 3);
 const int boton1 = 8, boton2 = 9, boton3 = 10;
 int boton_presionado;
-bool bandera_presionado = 0;
+bool bandera_presionado = 0, bandera_inicio = 0;
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -48,26 +48,33 @@ void borrarPantalla(){
     }
 }
 
-void dibujar(){
+void menu(){
+
+  if(bandera_inicio == 1){
+    lcd.setCursor(0,0);
+    lcd.print("Maquina de turing");
+    lcd.setCursor(0,1);
+    lcd.print("presiona 1 2 3");
+  }//if
 
   switch (boton_presionado)
   {
   case 1:
     borrarPantalla();
     lcd.setCursor(0, 0);
-    lcd.print("Hola");
+    lcd.print("N");
     break;
 
   case 2:
     borrarPantalla();
     lcd.setCursor(0,0);
-    lcd.print("mundo"); 
+    lcd.print("se la"); 
     break;
 
   case 3:
     borrarPantalla();
     lcd.setCursor(0,0);
-    lcd.print("N se la come");
+    lcd.print("Come");
     break;
 
   }//switch
@@ -80,20 +87,25 @@ void loop() {
 //  Serial.println(fase);
  // Serial.println(configuracion.escrutado);
 // Serial.println((millis() - last_boton1)/1000);
-  
+  if(bandera_presionado == 0){
+    bandera_inicio = 1;
+  }//if
   delay(10);
-  dibujar();
+  menu();
   
   if (digitalRead(boton1)==HIGH){
     bandera_presionado = 1;
+    bandera_inicio = 0;
     boton1_presionado();
   }
   if (digitalRead(boton2)==HIGH){
     bandera_presionado = 1;
+    bandera_inicio = 0;
     boton2_presionado();
   }
   if (digitalRead(boton3)==HIGH){
     bandera_presionado = 1;
+    bandera_inicio = 0;
     boton3_presionado();
   }
 
