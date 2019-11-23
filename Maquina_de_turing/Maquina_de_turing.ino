@@ -2,9 +2,10 @@
 #include "Automata1.h"
 //Constantes y tipos
 LiquidCrystal lcd(12, 11, 6, 5, 4, 3);
-const int boton1 = 8, boton2 = 9, boton3 = 10, intervalo = 500;
-int boton_presionado, Arreglop_boton1 = 0, estado_boton1, estado_boton2, estado_boton3;
+const int boton1 = 8, boton2 = 9, boton3 = 10;
+int boton_presionado, Arreglop_boton1 = 0, estado_boton1, estado_boton2, estado_boton3, fuePresionado = 0;
 bool bandera_presionado = 0, bandera_inicio = 0, botoni_presionado = 0;
+char Arreglo_boton1[3] = {'a', 'b' , 'c'};
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -53,23 +54,28 @@ void borrarPantalla(){
 
 //====================================================AUTOMATAS==================================================
 void Automata1(){
-    char Arreglo_boton1[3] = {'a', 'b' , 'c'};
-
 
     while(digitalRead(boton2)!=HIGH){
 
-      while(digitalRead(boton1)!=HIGH){
+      while(digitalRead(boton1) == LOW){
         //no hace nada
       }//mientras el boton 1 no este presionado
       lcd.setCursor(0,0);
-      if((millis() - last_boton1) > intervalo){
-        lcd.print(Arreglo_boton1[Arreglop_boton1]);
-        Arreglop_boton1 +=1;
-        if(Arreglop_boton1 >= 3){
-          Arreglop_boton1 = 0;
-        }//si es mayor que 3
-      }//if
-      last_boton1 = millis();
+      if(fuePresionado){
+        if(digitalRead(boton1) == LOW){
+          fuePresionado = 0;
+        }//si fue despresionado
+      }//si fue presionado
+      else{
+        if (digitalRead(boton1) == HIGH){
+          fuePresionado = 1;
+          lcd.print(Arreglo_boton1[Arreglop_boton1]);
+          Arreglop_boton1 +=1;
+          if(Arreglop_boton1 >= 3){
+            Arreglop_boton1 = 0;
+          }//si es mayor que 3
+        }//if
+      }//else
     }//while
 
 
