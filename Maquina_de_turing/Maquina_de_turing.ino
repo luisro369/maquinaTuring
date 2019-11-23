@@ -41,34 +41,31 @@ void boton3_presionado(){
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void borrarPantalla(){
+  if(bandera_presionado == 1){
+      lcd.clear();
+      bandera_presionado = 0;
+    }
+}
 
 void dibujar(){
 
   switch (boton_presionado)
   {
   case 1:
-    if(bandera_presionado == 1){
-      lcd.clear();
-      bandera_presionado = 0;
-    }
+    borrarPantalla();
     lcd.setCursor(0, 0);
     lcd.print("Hola");
     break;
 
   case 2:
-    if(bandera_presionado == 1){
-      lcd.clear();
-      bandera_presionado = 0;
-    }
+    borrarPantalla();
     lcd.setCursor(0,0);
     lcd.print("mundo"); 
     break;
 
   case 3:
-    if(bandera_presionado == 1){
-      lcd.clear();
-      bandera_presionado = 0;
-    }
+    borrarPantalla();
     lcd.setCursor(0,0);
     lcd.print("N se la come");
     break;
@@ -101,16 +98,3 @@ void loop() {
   }
 
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
