@@ -1,9 +1,10 @@
 #include <LiquidCrystal.h>
+#include "Automata1.h"
 //Constantes y tipos
 LiquidCrystal lcd(12, 11, 6, 5, 4, 3);
 const int boton1 = 8, boton2 = 9, boton3 = 10;
 int boton_presionado;
-bool bandera_presionado = 0, bandera_inicio = 0, boton_presionado = 0;
+bool bandera_presionado = 0, bandera_inicio = 0, botoni_presionado = 0;
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -62,7 +63,7 @@ void menu(){
   case 1:
     borrarPantalla();
     lcd.setCursor(0, 0);
-    lcd.print("N");
+    Automata1();//<---funcion automata1
     break;
 
   case 2:
@@ -87,26 +88,26 @@ void loop() {
 //  Serial.println(fase);
  // Serial.println(configuracion.escrutado);
 // Serial.println((millis() - last_boton1)/1000);
-  if(boton_presionado == 0){
+  if(botoni_presionado == 0){
     bandera_inicio = 1;
   }//if
   delay(10);
   menu();
   
   if (digitalRead(boton1)==HIGH){
-    boton_presionado = 1;
+    botoni_presionado = 1;
     bandera_presionado = 1;
     bandera_inicio = 0;
     boton1_presionado();
   }
   if (digitalRead(boton2)==HIGH){
-    boton_presionado = 1;
+    botoni_presionado = 1;
     bandera_presionado = 1;
     bandera_inicio = 0;
     boton2_presionado();
   }
   if (digitalRead(boton3)==HIGH){
-    boton_presionado = 1;
+    botoni_presionado = 1;
     bandera_presionado = 1;
     bandera_inicio = 0;
     boton3_presionado();
