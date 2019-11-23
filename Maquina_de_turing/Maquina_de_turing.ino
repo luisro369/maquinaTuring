@@ -54,6 +54,23 @@ void borrarPantalla(){
 //====================================================AUTOMATAS==================================================
 void Automata1(){
     char Arreglo_boton1[3] = {'a', 'b' , 'c'};
+
+    while(digitalRead(boton2)!=HIGH){
+
+    }//mientras el boton 1 no este presionado
+
+    lcd.setCursor(0,0);
+    estado_boton1 = digitalRead(boton1);
+    if (estado_boton1){
+      lcd.print(Arreglo_boton1[Arreglop_boton1]);
+      Arreglop_boton1 +=1;
+      if(Arreglop_boton1 >= 3){
+        Arreglop_boton1 = 0;
+      }//si es mayor que 3
+    }//if
+
+
+    /*
     while(digitalRead(boton2)!=HIGH){
       lcd.setCursor(0,0);
       //delay(600);
@@ -66,7 +83,7 @@ void Automata1(){
         }//si es mayor que 3
       }//if
     }//while
-    
+    */
 }//automata1
 
 
