@@ -3,6 +3,7 @@
 LiquidCrystal lcd(12, 11, 6, 5, 4, 3);
 const int boton1=8,boton2=9,boton3=10;
 const int ledPin =  13;
+int boton_presionado;
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -20,16 +21,46 @@ void setup() {
   pinMode(8,INPUT);
   pinMode(boton2,INPUT);
   pinMode(boton3,INPUT);
-  reiniciar(true);
 }
+
+
+//==================================Boton1===============
+boton1_presionado(){
+  boton_presionado = 1;
+
+}//boton1
+
+boton2_presionado(){
+  boton_presionado = 2;
+
+}//boton2
+
+boton3_presionado(){
+  boton_presionado = 3;
+
+}//boton3
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void dibujar(){
 
- lcd.print("Hola");
- lcd.print("mundo"); 
- lcd.print("N se la come");
+  switch (boton_presionado)
+  {
+  case 1:
+    lcd.setCursor(0, 0);
+    lcd.print("Hola");
+    break;
+
+  case 2:
+    lcd.setCurson(0,0);
+    lcd.print("mundo"); 
+
+  case 3:
+    lcd.setCurson(0,0);
+    lcd.print("N se la come");
+
+  }
 
 }
  
@@ -42,27 +73,20 @@ void loop() {
   
   delay(10);
   dibujar();
-  /*
+  
   if (digitalRead(boton1)==HIGH){
-  boton1_pressed();
+    boton1_presionado();
   }
   if (digitalRead(boton2)==HIGH){
-  boton2_pressed();
+    boton2_presionado();
   }
   if (digitalRead(boton3)==HIGH){
-  boton3_pressed();
-  }
-   if (digitalRead(boton3)==HIGH){
-  boton3_pressed();
-  */
+    boton3_presionado();
   }
 
-  
+  }
 
 
-
-  
-}
 
 
 
