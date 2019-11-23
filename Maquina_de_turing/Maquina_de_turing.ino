@@ -49,6 +49,40 @@ void borrarPantalla(){
     }
 }
 
+
+
+//====================================================AUTOMATAS==================================================
+void Automata1(){
+    char Arreglo_boton1[3] = {'a', 'b' , 'c'};
+    lcd.print(Arreglo_boton1[0]);
+    lcd.print(Arreglo_boton1[1]);
+    lcd.print(Arreglo_boton1[2]);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 void menu(){
 
   if(bandera_inicio == 1){
