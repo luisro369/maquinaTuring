@@ -3,8 +3,8 @@
 //Constantes y tipos
 LiquidCrystal lcd(12, 11, 6, 5, 4, 3);
 const int boton1 = 8, boton2 = 9, boton3 = 10;
-int boton_presionado, Arreglop_boton1 = 0;
-bool bandera_presionado = 0, bandera_inicio = 0, botoni_presionado = 0, bandera = 0;
+int boton_presionado, Arreglop_boton1 = 0, estado_boton1, estado_boton2, estado_boton3;
+bool bandera_presionado = 0, bandera_inicio = 0, botoni_presionado = 0;
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -54,18 +54,16 @@ void borrarPantalla(){
 //====================================================AUTOMATAS==================================================
 void Automata1(){
     char Arreglo_boton1[3] = {'a', 'b' , 'c'};
-    while(bandera == 0){
+    while(digitalRead(boton2)!=HIGH){
       lcd.setCursor(0,0);
       //delay(600);
-      if (digitalRead(boton1)==HIGH){
+      estado_boton1 = digitalRead(boton1);
+      if (estado_boton1){
         lcd.print(Arreglo_boton1[Arreglop_boton1]);
         Arreglop_boton1 +=1;
         if(Arreglop_boton1 >= 3){
           Arreglop_boton1 = 0;
         }//si es mayor que 3
-      }//if
-      if(digitalRead(boton2)==HIGH){
-        bandera = 1;
       }//if
     }//while
     
