@@ -3,6 +3,7 @@
 LiquidCrystal lcd(12, 11, 6, 5, 4, 3);
 const int boton1 = 8, boton2 = 9, boton3 = 10;
 int boton_presionado;
+bool bandera_presionado = 0;
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -23,17 +24,17 @@ void setup() {
 
 
 //==================================Botones===============
-boton1_presionado(void){
+void boton1_presionado(){
   boton_presionado = 1;
 
 }//boton1
 
-boton2_presionado(void){
+void boton2_presionado(){
   boton_presionado = 2;
 
 }//boton2
 
-boton3_presionado(void){
+void boton3_presionado(){
   boton_presionado = 3;
 
 }//boton3
@@ -46,19 +47,28 @@ void dibujar(){
   switch (boton_presionado)
   {
   case 1:
-    lcd.clear();
+    if(bandera_presionado == 1;){
+      lcd.clear();
+      bandera_presionado = 0;
+    }
     lcd.setCursor(0, 0);
     lcd.print("Hola");
     break;
 
   case 2:
-    lcd.clear();
+    if(bandera_presionado == 1;){
+      lcd.clear();
+      bandera_presionado = 0;
+    }
     lcd.setCursor(0,0);
     lcd.print("mundo"); 
     break;
 
   case 3:
-    lcd.clear();
+    if(bandera_presionado == 1;){
+      lcd.clear();
+      bandera_presionado = 0;
+    }
     lcd.setCursor(0,0);
     lcd.print("N se la come");
     break;
@@ -78,6 +88,7 @@ void loop() {
   dibujar();
   
   if (digitalRead(boton1)==HIGH){
+    bandera_presionado = 1;
     boton1_presionado();
   }
   if (digitalRead(boton2)==HIGH){
