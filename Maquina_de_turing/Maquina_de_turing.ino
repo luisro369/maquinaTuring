@@ -3,9 +3,9 @@
 //Constantes y tipos
 LiquidCrystal lcd(12, 11, 6, 5, 4, 3);
 const int boton1 = 8, boton2 = 9, boton3 = 10;
-int boton_presionado, Arreglop_boton1 = 0, estado_boton1, estado_boton2, estado_boton3, fuePresionado = 0;
+int boton_presionado, Arreglop_boton1 = 0, estado_boton1, estado_boton2, estado_boton3, fuePresionado = 0,fuePresionado2 = 0 , fuePresionado3 = 0, posCursor = 0, boton2pres = 0, car_final;
 bool bandera_presionado = 0, bandera_inicio = 0, botoni_presionado = 0;
-char Arreglo_boton1[3] = {'a', 'b' , 'c'};
+char Arreglo_boton1[3] = {'a', 'b' , 'c'}, ArregloCadena[16];
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -52,37 +52,79 @@ void borrarPantalla(){
 
 
 
+void Automata1F(){
+  lcd.print("hola desde funcion");
+}//funcion del automata
+
+
 //====================================================AUTOMATAS==================================================
 void Automata1(){
-  int posCursor = 0;
-
-    while(digitalRead(boton3)!=HIGH){
-      while(digitalRead(boton2)!=HIGH){
-
-        while(digitalRead(boton1) == LOW){
-          //no hace nada
-        }//mientras el boton 1 no este presionado
-
-        lcd.setCursor(posCursor,0);
-        if(fuePresionado){
-          if(digitalRead(boton1) == LOW){
-            fuePresionado = 0;
-          }//si fue despresionado
-        }//si fue presionado
-        else{
-          if (digitalRead(boton1) == HIGH){
-            fuePresionado = 1;
-            lcd.print(Arreglo_boton1[Arreglop_boton1]);
-
-            Arreglop_boton1 +=1;
-            if(Arreglop_boton1 >= 3){
-              Arreglop_boton1 = 0;
-            }//si es mayor que 3
-          }//if
-        }//else
-      }//while btn2
-      posCursor += 1;
-    }//while btn3
+    int bandera = 0;
+    //==========menu de botones en automata 1=======================
+    while(bandera == 0){
+     
+            //=======================CONTROLADOR BOTON 1======================
+            lcd.setCursor(posCursor,0);
+            Serial.print(posCursor);
+        
+            if(fuePresionado){
+              if(digitalRead(boton1) == LOW){
+                fuePresionado = 0;
+              }//si fue despresionado
+            }//si fue presionado
+            else{
+              if (digitalRead(boton1) == HIGH){
+                fuePresionado = 1;
+                lcd.print(Arreglo_boton1[Arreglop_boton1]);
+                car_final =  Arreglop_boton1;
+                Serial.print("bton 1 presionado");
+    
+                Arreglop_boton1 +=1;
+                if(Arreglop_boton1 >= 3){
+                  Arreglop_boton1 = 0;
+                }//si es mayor que 3
+              }//if
+            }//else   
+            
+            //==========================CONTROLADOR BOTON 2===========================
+         if(fuePresionado2){
+              if(digitalRead(boton2) == LOW){
+                fuePresionado2 = 0;
+              }//si fue despresionado
+            }//si fue presionado
+            else{
+              if (digitalRead(boton2) == HIGH){
+                fuePresionado2 = 1;
+                ArregloCadena[posCursor] = Arreglo_boton1[car_final];
+          Serial.print("bton 2 presionado!!!");
+          Serial.print(ArregloCadena[posCursor]);
+          posCursor = posCursor + 1;
+              }//is
+            }//else
+            
+           
+           //==========================CONTROLADOR  BOTON 3======================
+            if(fuePresionado3){
+              if(digitalRead(boton3) == LOW){
+                fuePresionado3 = 0;
+              }//si fue despresionado
+            }//si fue presionado
+            else{
+              if (digitalRead(boton3) == HIGH){
+                fuePresionado3 = 1;
+                Serial.print("BOTON 3===========================");
+                Serial.print(Arreglop_boton1);
+                ArregloCadena[posCursor] = Arreglo_boton1[car_final];
+                bandera = 1;
+                Automata1F();
+              }//is
+            }//else
+            
+            
+            
+    }//while button 3
+      Serial.print("me sali del boton 3");
+    //ArregloCadena[posCursor] = Arreglo_boton1[Arreglop_boton1 -1];
 
 }//automata1
 
@@ -136,7 +178,12 @@ void menu(){
   case 3:
     borrarPantalla();
     lcd.setCursor(0,0);
-    lcd.print("Come");
+    //lcd.print("Come");
+    lcd.print(ArregloCadena[0]);
+    lcd.setCursor(1,0);
+    lcd.print(ArregloCadena[1]);
+    lcd.setCursor(2,0);
+    lcd.print(ArregloCadena[2]);
     break;
 
   }//switch
