@@ -90,7 +90,17 @@ void Automata1F(){
         lcd.setCursor(Cursor,0);
         lcd.print(ArregloCifrado[i]);
         Cursor += 1;
-        delay(1000);
+        
+        lcd.setCursor(6,1);
+        lcd.print("mem");
+        lcd.setCursor(10,1);
+        lcd.print("a");
+        lcd.setCursor(12,1);
+        lcd.print("es");
+        lcd.setCursor(15,1);
+        lcd.print("1");
+        
+        delay(2500);
         break;
         
       case 'b':
@@ -98,7 +108,17 @@ void Automata1F(){
         lcd.setCursor(Cursor,0);
         lcd.print(ArregloCifrado[i]);
         Cursor += 1;
-        delay(1000);
+        
+        lcd.setCursor(6,1);
+        lcd.print("mem");
+        lcd.setCursor(10,1);
+        lcd.print("b");
+        lcd.setCursor(12,1);
+        lcd.print("es");
+        lcd.setCursor(15,1);
+        lcd.print("2");
+        
+        delay(2500);
         break;
         
       case 'c':
@@ -106,7 +126,17 @@ void Automata1F(){
         lcd.setCursor(Cursor,0);
         lcd.print(ArregloCifrado[i]);
         Cursor += 1;
-        delay(1000);
+        
+        lcd.setCursor(6,1);
+        lcd.print("mem");
+        lcd.setCursor(10,1);
+        lcd.print("c");
+        lcd.setCursor(12,1);
+        lcd.print("es");
+        lcd.setCursor(15,1);
+        lcd.print("3");
+        
+        delay(2500);
         break;
         
       default:
@@ -132,12 +162,21 @@ void Automata2F1(){
   lcd.clear();
   lcd.setCursor(0,0);
   
+  lcd.print(ArregloCifrado);
+  delay(2500);
+  
   for(int i = 0; i < 3; i++){
     cif2[i] = mur[llave + i];
   }//llenando cif2
   
+  lcd.setCursor(0,1);
+  lcd.print("key");
+  lcd.setCursor(4,1);
+  lcd.print(llave);
   lcd.setCursor(0,0);
   Cursor = 0;
+  
+  delay(2500);
   for(int i = 0; i < 16; i++){
     
     switch(ArregloCifrado[i]){
@@ -148,7 +187,17 @@ void Automata2F1(){
         lcd.setCursor(Cursor,0);
         lcd.print(ArregloDescifrado[i]);
         Cursor += 1;
-        delay(1000);
+        
+        lcd.setCursor(6,1);
+        lcd.print("mem");
+        lcd.setCursor(10,1);
+        lcd.print("m");
+        lcd.setCursor(12,1);
+        lcd.print("es");
+        lcd.setCursor(15,1);
+        lcd.print("1");
+        
+        delay(2500);
         break;
         
       case 'u':
@@ -158,7 +207,17 @@ void Automata2F1(){
         lcd.setCursor(Cursor,0);
         lcd.print(ArregloDescifrado[i]);
         Cursor += 1;
-        delay(1000);
+        
+        lcd.setCursor(6,1);
+        lcd.print("mem");
+        lcd.setCursor(10,1);
+        lcd.print("u");
+        lcd.setCursor(12,1);
+        lcd.print("es");
+        lcd.setCursor(15,1);
+        lcd.print("2");
+        
+        delay(2500);
         break;
         
       case 'r':
@@ -168,7 +227,17 @@ void Automata2F1(){
         lcd.setCursor(Cursor,0);
         lcd.print(ArregloDescifrado[i]);
         Cursor += 1;
-        delay(1000);
+        
+        lcd.setCursor(6,1);
+        lcd.print("mem");
+        lcd.setCursor(10,1);
+        lcd.print("r");
+        lcd.setCursor(12,1);
+        lcd.print("es");
+        lcd.setCursor(15,1);
+        lcd.print("3");
+        
+        delay(2500);
         break;
         
       case 'c':
@@ -178,7 +247,17 @@ void Automata2F1(){
         lcd.setCursor(Cursor,0);
         lcd.print(ArregloDescifrado[i]);
         Cursor += 1;
-        delay(1000);
+        
+        lcd.setCursor(6,1);
+        lcd.print("mem");
+        lcd.setCursor(10,1);
+        lcd.print("c");
+        lcd.setCursor(12,1);
+        lcd.print("es");
+        lcd.setCursor(15,1);
+        lcd.print("4");
+        
+        delay(2500);
         break;
         
       case 'i':
@@ -188,7 +267,17 @@ void Automata2F1(){
         lcd.setCursor(Cursor,0);
         lcd.print(ArregloDescifrado[i]);
         Cursor += 1;
-        delay(1000);
+        
+        lcd.setCursor(6,1);
+        lcd.print("mem");
+        lcd.setCursor(10,1);
+        lcd.print("i");
+        lcd.setCursor(12,1);
+        lcd.print("es");
+        lcd.setCursor(15,1);
+        lcd.print("5");
+        
+        delay(2500);
         break;
         
       case 'e':
@@ -198,7 +287,17 @@ void Automata2F1(){
         lcd.setCursor(Cursor,0);
         lcd.print(ArregloDescifrado[i]);
         Cursor += 1;
-        delay(1000);
+        
+        lcd.setCursor(6,1);
+        lcd.print("mem");
+        lcd.setCursor(10,1);
+        lcd.print("e");
+        lcd.setCursor(12,1);
+        lcd.print("es");
+        lcd.setCursor(15,1);
+        lcd.print("6");
+        
+        delay(2500);
         break;  
         
       case 'l':
@@ -208,7 +307,17 @@ void Automata2F1(){
         lcd.setCursor(Cursor,0);
         lcd.print(ArregloDescifrado[i]);
         Cursor += 1;
-        delay(1000);
+        
+        lcd.setCursor(6,1);
+        lcd.print("mem");
+        lcd.setCursor(10,1);
+        lcd.print("l");
+        lcd.setCursor(12,1);
+        lcd.print("es");
+        lcd.setCursor(15,1);
+        lcd.print("7");
+        
+        delay(2500);
         break;  
         
       case 'a':
@@ -218,7 +327,17 @@ void Automata2F1(){
         lcd.setCursor(Cursor,0);
         lcd.print(ArregloDescifrado[i]);
         Cursor += 1;
-        delay(1000);
+        
+        lcd.setCursor(6,1);
+        lcd.print("mem");
+        lcd.setCursor(10,1);
+        lcd.print("a");
+        lcd.setCursor(12,1);
+        lcd.print("es");
+        lcd.setCursor(15,1);
+        lcd.print("8");
+        
+        delay(2500);
         break;  
         
       case 'g':
@@ -228,7 +347,17 @@ void Automata2F1(){
         lcd.setCursor(Cursor,0);
         lcd.print(ArregloDescifrado[i]);
         Cursor += 1;
-        delay(1000);
+        
+        lcd.setCursor(6,1);
+        lcd.print("mem");
+        lcd.setCursor(10,1);
+        lcd.print("g");
+        lcd.setCursor(12,1);
+        lcd.print("es");
+        lcd.setCursor(15,1);
+        lcd.print("9");
+        
+        delay(2500);
         break;
         
       case 'o':
@@ -238,7 +367,17 @@ void Automata2F1(){
         lcd.setCursor(Cursor,0);
         lcd.print(ArregloDescifrado[i]);
         Cursor += 1;
-        delay(1000);
+        
+        lcd.setCursor(6,1);
+        lcd.print("mem");
+        lcd.setCursor(10,1);
+        lcd.print("o");
+        lcd.setCursor(12,1);
+        lcd.print("es");
+        lcd.setCursor(15,1);
+        lcd.print("0");
+        
+        delay(2500);
         break; 
        
         
