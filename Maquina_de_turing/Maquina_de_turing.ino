@@ -10,12 +10,15 @@ char Arreglo_boton1[3] = {'a', 'b' , 'c'};
 //===========variables automata1==============
 char mur[10] = {'m', 'u', 'r', 'c', 'i', 'e', 'l', 'a', 'g', 'o'} , ArregloCadena[16] = {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '};
 char mur2[16];
-int pos_rotor, Cursor = 0;
+int  Cursor = 0;
 //============variables automata2========================
 char ArregloCifrado[16] = {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '};
 char ArregloDescifrado[16] = {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '};
 char cif2[3];
-int llave = 0;
+int llave = -1, pos_mur = 0;
+//============variables automata2========================
+char Arreglo_boton3[3] = {'a', 'b'};
+
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -65,9 +68,10 @@ void borrarPantalla(){
 //==============================================Funciones de automatas============================================
 //--------------------AUTOMATA1---------------------------------
 void Automata1F(){
-  
+  delay(1000);
   //----------posicion del rotor
-  pos_rotor = random(10);
+  int pos_rotor = random(10);
+  //pos_rotor = 9;
   lcd.setCursor(0,1);
   lcd.print("key");
   lcd.setCursor(4,1);
@@ -117,12 +121,13 @@ void Automata1F(){
   while(digitalRead(boton3) == LOW){
     //no hacer nada
   }//while
-  delay(1000);
+  delay(1500);
   resetFunc();
 }//funcion del automata 1
 
 //-----------------automata2-------------------------
 void Automata2F1(){
+  delay(1000);
   char Llave[3] = {'a', 'b', 'c'};
   lcd.clear();
   lcd.setCursor(0,0);
@@ -131,7 +136,8 @@ void Automata2F1(){
     cif2[i] = mur[llave + i];
   }//llenando cif2
   
-  lcd.setCursor(Cursor,0);
+  lcd.setCursor(0,0);
+  Cursor = 0;
   for(int i = 0; i < 16; i++){
     
     switch(ArregloCifrado[i]){
@@ -251,7 +257,7 @@ void Automata2F1(){
     //no hacer nada
   }//while
   
-  delay(1000);
+  delay(1500);
   resetFunc();//<----reseteo el arduino
 
 }//automata2f1
@@ -260,9 +266,11 @@ void Automata2F1(){
 
 
 void Automata2F(){
+  delay(1000);
   int bandera = 0;
   //------pedimos la llave
   lcd.clear();
+  posCursor = 0;
   while(bandera == 0){
   //=======================CONTROLADOR BOTON 1======================
             lcd.setCursor(posCursor,0);
@@ -282,6 +290,7 @@ void Automata2F(){
                 if(llave >= 10){
                   llave = 0;
                   lcd.clear();
+                  lcd.print(llave);
                 }//si es mayor que 10
               }//if
             }//else   
@@ -303,10 +312,49 @@ void Automata2F(){
 }//funcion automata2
 
 
+void Automata3F(){
+  delay(1000);
+  int variable = 0;
+  for(int i = 0; i < 16; i++){
+    if(ArregloCadena[i] == 'a'){
+      if(ArregloCadena[i+1] == 'b'){
+        if(ArregloCadena[i+2] == 'a'){
+          if(ArregloCadena[i+3] == 'a'){
+            variable += 1;
+          }//if
+        }//if
+      }//if
+    }//if
+  }//for
+  
+  if(variable >= 1){
+    lcd.clear();
+    lcd.setCursor(0,0);
+    lcd.print("palabra aceptada");
+  }//si encontro abaa en la cadena
+  else{
+    lcd.clear();
+    lcd.setCursor(0,0);
+    lcd.print("no aceptada");
+  }//si no encontro abaa en la palabra
+  
+
+    while(digitalRead(boton3) == LOW){
+        //no hacer nada
+      }//while
+      
+      delay(1500);
+      resetFunc();//<----reseteo el arduino
+
+}//funcion automata3
+
+
+
 
 //====================================================AUTOMATAS==================================================
 //----------------------------------AUTOMATA1------------------------------------
 void Automata1(){
+  delay(1000);
     int bandera = 0;
     //==========menu de botones en automata 1=======================
     while(bandera == 0){
@@ -379,8 +427,10 @@ void Automata1(){
 
 //----------------------------------AUTOMATA 2-----------------------
 void Automata2(){
+  delay(1000);
     int bandera = 0;
     //==========menu de botones en automata 1=======================
+    posCursor = 0;
     while(bandera == 0){
      
             //=======================CONTROLADOR BOTON 1======================
@@ -395,13 +445,13 @@ void Automata2(){
             else{
               if (digitalRead(boton1) == HIGH){
                 fuePresionado = 1;
-                lcd.print(mur[Arreglop_boton1]);
-                car_final =  Arreglop_boton1;
+                lcd.print(mur[pos_mur]);
+                car_final =  pos_mur;
                 Serial.print("bton 1 presionado");
     
-                Arreglop_boton1 +=1;
-                if(Arreglop_boton1 >= 10){
-                  Arreglop_boton1 = 0;
+                pos_mur +=1;
+                if(pos_mur >= 10){
+                  pos_mur = 0;
                 }//si es mayor que 3
               }//if
             }//else   
@@ -442,7 +492,77 @@ void Automata2(){
 
 }//automata2
 
+//------------------------AUTOMATA3---------------------
 
+void Automata3(){
+  delay(1000);
+  int bandera = 0;
+    //==========menu de botones en automata 1=======================
+    while(bandera == 0){
+     
+            //=======================CONTROLADOR BOTON 1======================
+            lcd.setCursor(posCursor,0);
+            Serial.print(posCursor);
+        
+            if(fuePresionado){
+              if(digitalRead(boton1) == LOW){
+                fuePresionado = 0;
+              }//si fue despresionado
+            }//si fue presionado
+            else{
+              if (digitalRead(boton1) == HIGH){
+                fuePresionado = 1;
+                lcd.print(Arreglo_boton3[Arreglop_boton1]);
+                car_final =  Arreglop_boton1;
+                Serial.print("bton 1 presionado");
+    
+                Arreglop_boton1 +=1;
+                if(Arreglop_boton1 >= 2){
+                  Arreglop_boton1 = 0;
+                }//si es mayor que 2
+              }//if
+            }//else   
+            
+            //==========================CONTROLADOR BOTON 2===========================
+         if(fuePresionado2){
+              if(digitalRead(boton2) == LOW){
+                fuePresionado2 = 0;
+              }//si fue despresionado
+            }//si fue presionado
+            else{
+              if (digitalRead(boton2) == HIGH){
+                fuePresionado2 = 1;
+                ArregloCadena[posCursor] = Arreglo_boton3[car_final];
+          Serial.print("bton 2 presionado!!!");
+          Serial.print(ArregloCadena[posCursor]);
+          posCursor = posCursor + 1;
+              }//is
+            }//else
+            
+           
+           //==========================CONTROLADOR  BOTON 3======================
+            if(fuePresionado3){
+              if(digitalRead(boton3) == LOW){
+                fuePresionado3 = 0;
+              }//si fue despresionado
+            }//si fue presionado
+            else{
+              if (digitalRead(boton3) == HIGH){
+                fuePresionado3 = 1;
+                Serial.print("BOTON 3===========================");
+                Serial.print(Arreglop_boton1);
+                ArregloCadena[posCursor] = Arreglo_boton3[car_final];
+                Automata3F();//--------------
+                bandera = 1;
+              }//is
+            }//else
+            
+    }//while button 3
+      Serial.print("me sali del boton 3");
+      
+  
+    //ArregloCadena[posCursor] = Arreglo_boton1[Arreglop_boton1 -1];
+}//automata3
 
 
 
@@ -483,13 +603,13 @@ void menu(){
   case 2:
     borrarPantalla();
     lcd.setCursor(0,0);
-    Automata2();//f<---uncion automata2
+    Automata2();//<---funcion automata2
     break;
 
   case 3:
     borrarPantalla();
     lcd.setCursor(0,0);
-    lcd.print("Come");
+    Automata3();//<-----funcion automata3
     
     break;
 
