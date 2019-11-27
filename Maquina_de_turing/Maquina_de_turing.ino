@@ -6,7 +6,7 @@ const int boton1 = 8, boton2 = 9, boton3 = 10;
 
 int boton_presionado, Arreglop_boton1 = 0, estado_boton1, estado_boton2, estado_boton3, fuePresionado = 0,fuePresionado2 = 0 , fuePresionado3 = 0, posCursor = 0, boton2pres = 0, car_final;
 bool bandera_presionado = 0, bandera_inicio = 0, botoni_presionado = 0;
-char Arreglo_boton1[3] = {'a', 'b' , 'c'};
+char Arreglo_boton1[4] = {'a', 'b' , 'c', 'd'};
 //===========variables automata1==============
 char mur[10] = {'m', 'u', 'r', 'c', 'i', 'e', 'l', 'a', 'g', 'o'} , ArregloCadena[16] = {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '};
 char mur2[16];
@@ -69,9 +69,10 @@ void borrarPantalla(){
 //--------------------AUTOMATA1---------------------------------
 void Automata1F(){
   delay(1000);
+  int estado = 0;
   //----------posicion del rotor
-  int pos_rotor = random(10);
-  //pos_rotor = 9;
+  int pos_rotor = random(8);
+  
   lcd.setCursor(0,1);
   lcd.print("key");
   lcd.setCursor(4,1);
@@ -116,6 +117,11 @@ void Automata1F(){
         lcd.setCursor(12,1);
         lcd.print("es");
         lcd.setCursor(15,1);
+        delay(500);
+        lcd.setCursor(15,1);
+        lcd.print("1");
+        delay(500);
+        lcd.setCursor(15,1);
         lcd.print("2");
         
         delay(2500);
@@ -134,9 +140,23 @@ void Automata1F(){
         lcd.setCursor(12,1);
         lcd.print("es");
         lcd.setCursor(15,1);
+        delay(500);
+        lcd.setCursor(15,1);
+        lcd.print("1");
+        delay(500);
+        lcd.setCursor(15,1);
+        lcd.print("2");
+        delay(500);
+        lcd.setCursor(15,1);
         lcd.print("3");
         
         delay(2500);
+        break;
+        
+      case 'd':
+        lcd.setCursor(Cursor,0);
+        Cursor += 1;
+        estado = 4;
         break;
         
       default:
@@ -147,6 +167,15 @@ void Automata1F(){
         
     }//switch
   }//for
+  
+   if(estado == 4){
+        lcd.clear();
+        lcd.setCursor(0,0);
+        lcd.print("nein!! mein");
+        lcd.setCursor(0,1);
+        lcd.print("fuhrer");
+    }//si entro en estado4
+  
   
   while(digitalRead(boton3) == LOW){
     //no hacer nada
@@ -542,7 +571,7 @@ void Automata1(){
                 Serial.print("bton 1 presionado");
     
                 Arreglop_boton1 +=1;
-                if(Arreglop_boton1 >= 3){
+                if(Arreglop_boton1 >= 4){
                   Arreglop_boton1 = 0;
                 }//si es mayor que 3
               }//if
