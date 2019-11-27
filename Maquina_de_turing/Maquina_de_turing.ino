@@ -161,9 +161,9 @@ void Automata2F1(){
   char Llave[3] = {'a', 'b', 'c'};
   lcd.clear();
   lcd.setCursor(0,0);
-  
-  lcd.print(ArregloCifrado);
-  delay(2500);
+  for(int i = 0; i<16; i++){
+    lcd.print(ArregloCifrado[i]);
+  }
   
   for(int i = 0; i < 3; i++){
     cif2[i] = mur[llave + i];
