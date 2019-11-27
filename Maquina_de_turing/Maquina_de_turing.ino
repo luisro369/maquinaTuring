@@ -409,6 +409,8 @@ void Automata2F(){
   int bandera = 0;
   //------pedimos la llave
   lcd.clear();
+  lcd.setCursor(0,1);
+  lcd.print("ingresa la llave");
   posCursor = 0;
   while(bandera == 0){
   //=======================CONTROLADOR BOTON 1======================
@@ -453,20 +455,45 @@ void Automata2F(){
 
 void Automata3F(){
   delay(1000);
-  int variable = 0;
+  int estado = 1;
+  int aceptado = 0;
+  lcd.setCursor(0,1);
+  lcd.print("estado");
+  
   for(int i = 0; i < 16; i++){
+      estado = 1;
+      lcd.setCursor(7,1);
+      lcd.print(estado);
+      delay(1000);
     if(ArregloCadena[i] == 'a'){
+      estado = 2;
+      lcd.setCursor(7,1);
+      lcd.print(estado);
+      delay(2500);
       if(ArregloCadena[i+1] == 'b'){
+        estado = 3;
+        lcd.setCursor(7,1);
+        lcd.print(estado);
+        delay(2500);
         if(ArregloCadena[i+2] == 'a'){
+          estado = 4;
+          lcd.setCursor(7,1);
+          lcd.print(estado);
+          delay(2500);
           if(ArregloCadena[i+3] == 'a'){
-            variable += 1;
+            estado = 5;
+            lcd.setCursor(7,1);
+            lcd.print(estado);
+            aceptado = 1;
+            delay(2500);
+            break;
           }//if
         }//if
       }//if
     }//if
   }//for
   
-  if(variable >= 1){
+  if(aceptado == 1){
     lcd.clear();
     lcd.setCursor(0,0);
     lcd.print("palabra aceptada");
